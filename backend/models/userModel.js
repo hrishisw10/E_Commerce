@@ -3,13 +3,17 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
     customerId: Number,
-    loginId: {
+    email: {
         type: String,
         required: true,
         trim: true,
-        index: {unique: true}
+        unique: true
     },
     password: {
+        type: String,
+        required: true
+    },
+    password2:{
         type: String,
         required: true
     },
@@ -19,5 +23,5 @@ const userSchema = new Schema({
 
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('Users', userSchema);
 module.exports = User;
