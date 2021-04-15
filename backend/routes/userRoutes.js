@@ -18,4 +18,14 @@ router.post('/api/register',async (req,res) =>{
 
 });
 
+router.post('/api/login',(req,res) =>{
+    User.findOne({'email':req.body.email},(err,user)=>{
+        if(!user) return res.json({isAuth:false,message:'Email not found, recheck entered email or try signing up!'});
+        if(user.password==req.body.password){
+            return res.status(200).json({isAuth:true,message:"Logged in successfully"});
+        }
+        else return res.status(400).json({message:"Password not matched"})
+    })
+})
+
 module.exports = router;
